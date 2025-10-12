@@ -41,22 +41,22 @@
                 <div>
                     <div class="tile">
                         <div class="tile-heading">پاککەرەوە و ناوماڵ</div>
-                        <img src="{{ asset('image/4.png') }}" alt="1">
+                        <img src="{{ asset('image/2.png') }}" alt="1">
                         <a href="./product.html" class="btn-tile"> زیاتر</a>
                     </div>
                     <div class="tile">
                         <div class="tile-heading"> خواردن و خواردنەوە</div>
-                        <img src="{{ asset('image/3.png') }}" alt="2">
+                        <img src="{{ asset('image/6.png') }}" alt="2">
                         <a href="./product.html" class="btn-tile"> زیاتر</a>
                     </div>
                     <div class="tile">
                         <div class="tile-heading">قەساب و میوە</div>
-                        <img src="{{ asset('image/2.png') }}" alt="3">
+                        <img src="{{ asset('image/3.png') }}" alt="3">
                         <a href="./product.html" class="btn-tile"> زیاتر</a>
                     </div>
                     <div class="tile">
                         <div class="tile-heading"> بەیکەرى</div>
-                        <img src="{{ asset('image/1.png') }}" alt="4">
+                        <img src="{{ asset('image/5.png') }}" alt="4">
                         <a href="./product.html" class="btn-tile"> زیاتر</a>
                     </div>
                 </div>
