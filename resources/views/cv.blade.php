@@ -74,7 +74,8 @@
                 </div>
             </div>
 
-            <form>
+            <form action="{{ route('send_cv') }}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="py-2 px-5">
 
                     <div class="row cv-line">
@@ -86,53 +87,87 @@
                     <div class="row">
                         <div class="mb-3 col-md-4">
                             <label for="exampleInputEmail1" class="form-label my-label">ناوی سیانی</label>
-                            <input type="email" placeholder="ناوی سیانی" class="cv-input" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                            <input name="name" type="text" placeholder="ناوی سیانی" class="cv-input"
+                                id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                            @error('name')
+                                <label class="form-label my-label  " style="color:#dc3545 !important">
+                                    {{ $message }}
+                                </label>
+                            @enderror
                             <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                         </div>
                         <div class="mb-3 col-md-4">
                             <label for="exampleInputEmail1" class="form-label my-label">بڕوانامە</label>
-                            <input type="email" class="cv-input" placeholder="بڕوانامە" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            <input name="certificate" type="text" class="cv-input" placeholder="بڕوانامە"
+                                id="exampleInputEmail1" aria-describedby="emailHelp">
+                            @error('certificate')
+                                <label class="form-label my-label  " style="color:#dc3545 !important">
+                                    {{ $message }}
+                                </label>
+                            @enderror
                         </div>
                         <div class="mb-3 col-md-4">
                             <label for="exampleInputEmail1" class="form-label my-label">ڕەگەز</label>
-                            <select class="cv-input form-control cv-select" aria-label="Default select example">
-                                <option selected>ڕەگەز</option>
-                                <option value="1">نێر</option>
-                                <option value="2">مێ</option>
+                            <select name="gender" class="cv-input form-control cv-select"
+                                aria-label="Default select example">
+                                <option selected disabled>ڕەگەز</option>
+                                <option value="نێر">نێر</option>
+                                <option value="مێ">مێ</option>
                             </select>
-                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            @error('gender')
+                                <label class="form-label my-label  " style="color:#dc3545 !important">
+                                    {{ $message }}
+                                </label>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md-4">
                             <label for="exampleInputEmail1" class="form-label my-label">شار</label>
-                            <input type="email" class="cv-input" placeholder="شار" id="exampleInputEmail1"
+                            <input name="city" type="city" class="cv-input" placeholder="شار" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
-                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            @error('city')
+                                <label class="form-label my-label  " style="color:#dc3545 !important">
+                                    {{ $message }}
+                                </label>
+                            @enderror
                         </div>
                         <div class="mb-3 col-md-4">
                             <label for="exampleInputEmail1" class="form-label my-label">گەڕەک</label>
-                            <input type="email" class="cv-input" placeholder="گەڕەک" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            <input name="street" type="text" class="cv-input" placeholder="گەڕەک"
+                                id="exampleInputEmail1" aria-describedby="emailHelp">
+                            @error('street')
+                                <label class="form-label my-label  " style="color:#dc3545 !important">
+                                    {{ $message }}
+                                </label>
+                            @enderror
                         </div>
                         <div class="mb-3 col-md-4">
                             <label for="exampleInputEmail1" class="form-label my-label">لەدایکبوون</label>
-                            <input type="date" class="cv-input" placeholder="لەدایکبوون" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                            <input name="birth" type="date" class="cv-input" placeholder="لەدایکبوون"
+                                id="exampleInputEmail1" aria-describedby="emailHelp">
+                            @error('birth')
+                                <label class="form-label my-label  " style="color:#dc3545 !important">
+                                    {{ $message }}
+                                </label>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md-12">
                             <label for="exampleInputEmail1" class="form-label my-label">باری خێزانی</label>
-                            <select class="cv-input form-control cv-select" aria-label="Default select example">
-                                <option selected>باری خێزانی</option>
-                                <option value="1">خێزاندار</option>
-                                <option value="2">سەڵت</option>
+                            <select name="marriage" class="cv-input form-control cv-select"
+                                aria-label="Default select example">
+                                <option selected disabled>باری خێزانی</option>
+                                <option value="خێزاندار">خێزاندار</option>
+                                <option value="سەڵت">سەڵت</option>
                             </select>
+                            @error('marriage')
+                                <label class="form-label my-label  " style="color:#dc3545 !important">
+                                    {{ $message }}
+                                </label>
+                            @enderror
                         </div>
                     </div>
                     <div class="row cv-line">
@@ -145,20 +180,33 @@
                     <div class="row">
                         <div class="mb-3 col-md-4">
                             <label for="exampleInputEmail1" class="form-label my-label">شارەزایی کۆمپیوتەر</label>
-                            <input type="email" class="cv-input" placeholder="شارەزایی کۆمپیوتەر"
+                            <input name="computer_skills" type="text" class="cv-input" placeholder="شارەزایی کۆمپیوتەر"
                                 id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            @error('computer_skills')
+                                <label class="form-label my-label  " style="color:#dc3545 !important">
+                                    {{ $message }}
+                                </label>
+                            @enderror
                         </div>
                         <div class="mb-3 col-md-4">
                             <label for="exampleInputEmail1" class="form-label my-label">ئەزموونی پێشوو</label>
-                            <input type="text" class="cv-input" placeholder="ئەزموونی پێشوو" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                            <input name="prev_jobs" type="text" class="cv-input" placeholder="ئەزموونی پێشوو"
+                                id="exampleInputEmail1" aria-describedby="emailHelp">
+                            @error('prev_jobs')
+                                <label class="form-label my-label  " style="color:#dc3545 !important">
+                                    {{ $message }}
+                                </label>
+                            @enderror
                         </div>
                         <div class="mb-3 col-md-4">
                             <label for="exampleInputEmail1" class="form-label my-label">زمان</label>
-                            <input type="email" class="cv-input" placeholder="زمان" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            <input name="language" type="text" class="cv-input" placeholder="زمان"
+                                id="exampleInputEmail1" aria-describedby="emailHelp">
+                            @error('language')
+                                <label class="form-label my-label  " style="color:#dc3545 !important">
+                                    {{ $message }}
+                                </label>
+                            @enderror
                         </div>
                     </div>
                     <!-- --------------------------------------------------------------------------------------------------- -->
@@ -178,46 +226,55 @@
                         <div class="mb-3 col-md-4">
                             <label for="exampleInputEmail1" class="form-label my-label">شارەزایی کۆمپیوتەر</label>
                             <div class="form-check  my-form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <input name="job_wanted" class="form-check-input" type="radio" value="ژمێریاری"
+                                    id="flexCheckDefault">
                                 <label class="form-check-label my-label" for="flexCheckDefault">
                                     ژمێریاری
                                 </label>
                             </div>
                             <div class="form-check my-form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                <input name="job_wanted" class="form-check-input" type="radio" value="کۆگا"
+                                    id="flexCheckChecked" checked>
                                 <label class="form-check-label my-label" for="flexCheckChecked">
                                     کۆگا </label>
                             </div>
                             <div class="form-check my-form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <input name="job_wanted" class="form-check-input" type="radio" value="ناوڕەف"
+                                    id="flexCheckDefault">
                                 <label class="form-check-label my-label" for="flexCheckDefault">
                                     ناوڕەف </label>
                             </div>
                             <div class="form-check my-form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                <input name="job_wanted" class="form-check-input" type="radio" value="کاشێر"
+                                    id="flexCheckChecked" checked>
                                 <label class="form-check-label my-label" for="flexCheckChecked">
                                     کاشێر </label>
                             </div>
                             <div class="form-check my-form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <input name="job_wanted" class="form-check-input" type="radio"
+                                    value=" داتائینتری و ئایتی" id="flexCheckDefault">
                                 <label class="form-check-label my-label" for="flexCheckDefault">
-                                    داتائینتری و ئایتیداتائینتری و ئایتی </label>
+                                    داتائینتری و ئایتی </label>
                             </div>
                             <div class="form-check my-form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                <input name="job_wanted" class="form-check-input" type="radio" value="پاکەرەوە"
+                                    id="flexCheckChecked" checked>
                                 <label class="form-check-label my-label" for="flexCheckChecked">
                                     پاکەرەوە </label>
                             </div>
+
                         </div>
                         <div class="mb-3 col-md-4">
                             <label for="exampleInputEmail1" class="form-label my-label">ماوەی کارکردن</label>
                             <div class="form-check my-form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <input name="job_time" class="form-check-input" type="radio"
+                                    value=" ٨ بەیانی بۆ ٤ ئێوارە" id="flexCheckDefault">
                                 <label class="form-check-label my-label" for="flexCheckDefault">
                                     ٨ بەیانی بۆ ٤ ئێوارە</label>
                             </div>
                             <div class="form-check my-form-check ">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                <input name="job_time" class="form-check-input" type="radio" value="٤ ئێوارە بۆ ١٢ شەو"
+                                    id="flexCheckChecked" checked>
                                 <label class="form-check-label my-label" for="flexCheckChecked">
                                     ٤ ئێوارە بۆ ١٢ شەو </label>
                             </div>
@@ -226,11 +283,17 @@
                         <div class="mb-3 col-md-4">
                             <label for="exampleInputEmail1" class="form-label my-label">هۆکاری هاتووچۆت هەیە
                                 ؟</label>
-                            <select class="cv-input form-control cv-select" aria-label="Default select example">
-                                <option selected> هۆکاری هاتووچۆت هەیە</option>
-                                <option value="1">بەڵێ</option>
-                                <option value="2">نەخێر</option>
+                            <select name="traffic_reasons" class="cv-input form-control cv-select"
+                                aria-label="Default select example">
+                                <option selected disabled> هۆکاری هاتووچۆت هەیە</option>
+                                <option value="بەڵێ">بەڵێ</option>
+                                <option value="نەخێر">نەخێر</option>
                             </select>
+                            @error('traffic_reasons')
+                                <label class="form-label my-label  " style="color:#dc3545 !important">
+                                    {{ $message }}
+                                </label>
+                            @enderror
                         </div>
 
                     </div>
@@ -243,7 +306,7 @@
                     <div class="row cv-file-container">
                         <div class="mb-3 col-md-4">
                             <!-- Real file input (hidden) -->
-                            <input type="file" id="file" class="file-input" />
+                            <input type="file" name="cv_file" id="file" class="file-input" accept=".pdf,.doc,.docx" />
 
                             <!-- Custom styled label -->
                             <label for="file" class="file-label">📂 زیادکردنی فایل</label>
@@ -251,6 +314,11 @@
                             <!-- Display filename -->
                             <span class="file-name" id="file-name">هیچ بەڵگەنامەیەک دیارینەکراوە</span>
                         </div>
+                        @error('cv_file')
+                            <label class="form-label my-label  " style="color:#dc3545 !important">
+                                {{ $message }}
+                            </label>
+                        @enderror
                     </div>
 
                     <div class="row cv-line">

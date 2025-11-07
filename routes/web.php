@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,3 +28,8 @@ Route::get('/links',function(){
 Route::get('/back',function(){
     return back();
 })->name('back');
+
+Route::post('/send_cv',[MailController::class,'send'])->name('send_cv');
+Route::get('/mail',function(){
+    return view('emailtemplate');
+});
